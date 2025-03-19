@@ -1,0 +1,620 @@
+name: SALES
+tables:
+  - name: VW_SALES_DATA
+    description: The VW_SALES_DATA view provides a comprehensive summary of sales
+      data for pharmaceutical products, including details on customers, healthcare
+      providers, products, and sales metrics.__
+    base_table:
+      database: CORTEX_ANALYST_SEMANTICS
+      schema: SALES_DATA
+      table: VW_SALES_DATA
+    filters:
+      - name: HCP_FIRSTNAME
+        synonyms:
+          - Doctor first name
+          - Subject first name
+        description: A filter to restrict null values
+        expr: HCP_FIRSTNAME is not null
+      - name: HCP_LASTNAME
+        synonyms:
+          - Doctor last name
+          - Subject last name
+        description: A filter to restrict null values
+        expr: HCP_LASTNAME is not null
+      - name: ACE_HCP_ID
+        synonyms:
+          - Doctor number
+          - Subject number
+        description: A filter to restrict null values
+        expr: ACE_HCP_ID is not null
+      - name: HCP_ID
+        synonyms:
+          - Doctor number
+          - Subject number
+        description: A filter to restrict null values
+        expr: HCP_ID is not null
+    dimensions:
+      - name: ACE_DIST_CODE
+        synonyms:
+          - '  '
+        description: Distribution Code for ACE Sales Data__
+        expr: ACE_DIST_CODE
+        data_type: TEXT
+        sample_values:
+          - TE00
+          - TW00
+          - TU00
+      - name: ACE_HCP_ID
+        synonyms:
+          - '  '
+        description: Unique identifier for Healthcare Providers (HCPs) in the ACE
+          network__
+        expr: ACE_HCP_ID
+        data_type: TEXT
+        sample_values:
+          - D30N87T555
+          - D85N37T026
+          - D79N74T829
+      - name: ACE_TERRITORY_ID
+        synonyms:
+          - '  '
+        description: 'ACE Territory ID: Unique identifier for the territory assigned
+          to an ACE representative.__'
+        expr: ACE_TERRITORY_ID
+        data_type: TEXT
+        sample_values:
+          - PE06
+          - PW07
+          - PE09
+      - name: BRAND
+        synonyms:
+          - '  '
+        description: Brand of the product sold.__
+        expr: BRAND
+        data_type: TEXT
+        cortex_search_service:
+          database: CORTEX_ANALYST_SEMANTICS
+          schema: SEMANTIC_MODEL_GENERATOR
+          service: CORTEX_BRAND_SEARCH_SERVICE
+          literal_column: BRAND
+      - name: CLASS_OF_TRADE
+        synonyms:
+          - '  '
+        description: Class of Trade refers to the type of business or industry that
+          a customer or account belongs to.__
+        expr: CLASS_OF_TRADE
+        data_type: TEXT
+        sample_values:
+          - Indirect
+          - Direct
+          - Ex-US
+      - name: DIST_CODE
+        synonyms:
+          - '  '
+        description: Distribution Code__
+        expr: DIST_CODE
+        data_type: TEXT
+        sample_values:
+          - TE00
+          - TW00
+          - TU00
+      - name: DISTRICT
+        synonyms:
+          - '  '
+        description: Geographic sales district.__
+        expr: DISTRICT
+        data_type: TEXT
+        sample_values:
+          - East
+          - West
+          - Unassigned
+      - name: HCO_ADDRESS
+        synonyms:
+          - '  '
+        description: Business Address of the Healthcare Organization__
+        expr: HCO_ADDRESS
+        data_type: TEXT
+        sample_values:
+          - None
+          - 4000 DeKalb Tech Pkwy Ste 350
+          - 6875 Douglas Blvd
+      - name: HCO_CITY
+        synonyms:
+          - '  '
+        description: City of Headquarters__
+        expr: HCO_CITY
+        data_type: TEXT
+        sample_values:
+          - None
+          - Douglasville
+          - Duluth
+      - name: HCO_NAME
+        synonyms:
+          - Hospital
+          - Hospitals
+          - Clinic
+        description: Healthcare Organization Name__
+        expr: HCO_NAME
+        data_type: TEXT
+        sample_values:
+          - None
+          - KAISER (Georgia Dist Center)
+          - KAISER (Gwinnett)
+      - name: HCO_STATE
+        synonyms:
+          - '  '
+        description: State where the sales were made.__
+        expr: HCO_STATE
+        data_type: TEXT
+        sample_values:
+          - None
+          - CT
+          - NY
+      - name: HCP_ADDRESS
+        synonyms:
+          - '  '
+        description: Physical address of healthcare providers.__
+        expr: HCP_ADDRESS
+        data_type: TEXT
+        sample_values:
+          - 1261 Route 38 Ste A, Hainesport, NJ
+          - 2110 Harrisburg Pike Ste 1, Lancaster, PA
+          - 2001 Inwood Rd Fl 4, Dallas, TX
+      - name: HCP_CITY
+        synonyms:
+          - '  '
+        description: City of the Healthcare Provider (HCP)__
+        expr: HCP_CITY
+        data_type: TEXT
+        sample_values:
+          - Hainesport
+          - Lancaster
+          - Dallas
+      - name: HCP_FIRSTNAME
+        synonyms:
+          - '  '
+        description: First Name of Healthcare Provider__
+        expr: HCP_FIRSTNAME
+        data_type: TEXT
+        sample_values:
+          - Matthew
+          - Paul
+          - Margaret
+      - name: HCP_ID
+        synonyms:
+          - '  '
+        description: Healthcare Provider Identifier__
+        expr: HCP_ID
+        data_type: TEXT
+        sample_values:
+          - D30N87T555
+          - D85N37T026
+          - D79N74T829
+      - name: HCP_ID_FILTER
+        synonyms:
+          - '  '
+        description: 'HCP ID Filter: Indicates whether the sales data is filtered
+          by HCP (Healthcare Professional) ID.__'
+        expr: HCP_ID_FILTER
+        data_type: BOOLEAN
+        sample_values:
+          - 'False'
+          - None
+          - 'True'
+      - name: HCP_INITIALS
+        synonyms:
+          - '  '
+        description: Initials of Healthcare Professionals (HCPs)__
+        expr: HCP_INITIALS
+        data_type: TEXT
+        sample_values:
+          - MS
+          - PS
+          - MP
+      - name: HCP_LASTNAME
+        synonyms:
+          - '  '
+        description: Last Name of Healthcare Provider (HCP)__
+        expr: HCP_LASTNAME
+        data_type: TEXT
+        sample_values:
+          - Solitro
+          - Sieber
+          - Pearle
+      - name: HCP_STATE
+        synonyms:
+          - '  '
+        description: State of the Healthcare Provider (HCP)__
+        expr: HCP_STATE
+        data_type: TEXT
+        sample_values:
+          - NJ
+          - PA
+          - TX
+      - name: HCP_ZIP
+        synonyms:
+          - '  '
+        description: Healthcare Provider Zip Code__
+        expr: HCP_ZIP
+        data_type: TEXT
+        sample_values:
+          - '8036'
+          - '75390'
+          - '73112'
+      - name: INITIALS_IF_CONSENTED
+        synonyms:
+          - '  '
+        description: Initials of customers who have consented to data sharing.__
+        expr: INITIALS_IF_CONSENTED
+        data_type: TEXT
+        sample_values:
+          - JL
+          - EB
+          - MD
+      - name: PAT_TYPE_TRIM_1
+        synonyms:
+          - '  '
+        description: 'Patent Type Trim 1: Indicates the type of patent trim applied
+          to the vehicle.__'
+        expr: PAT_TYPE_TRIM_1
+        data_type: TEXT
+        sample_values:
+          - R
+          - F
+          - None
+      - name: PATIENT_CONSENTED
+        synonyms:
+          - '  '
+        description: Indicates whether the patient has provided consent for their
+          medical data to be used for research purposes.__
+        expr: PATIENT_CONSENTED
+        data_type: BOOLEAN
+        sample_values:
+          - 'True'
+          - 'False'
+          - None
+      - name: PATIENT_ID
+        synonyms:
+          - '  '
+        description: Unique identifier for each patient.__
+        expr: PATIENT_ID
+        data_type: TEXT
+        sample_values:
+          - A37K84P0
+          - A95K25P59
+          - A55K44P45
+      - name: PATIENT_ID_FILTER
+        synonyms:
+          - '  '
+        description: 'Patient ID Filter Flag: Indicates whether patient ID filtering
+          is enabled or disabled for sales data.__'
+        expr: PATIENT_ID_FILTER
+        data_type: BOOLEAN
+        sample_values:
+          - 'False'
+          - None
+          - 'True'
+      - name: PATTYPE
+        synonyms:
+          - '  '
+        description: Product Type__
+        expr: PATTYPE
+        data_type: TEXT
+        sample_values:
+          - NEUXOLA R
+          - NEUXOLA F
+          - RAFLOPIN R
+      - name: PAYER_TYPE
+        synonyms:
+          - '  '
+        description: Type of payer for the sales data, including Medicare Part D,
+          Commercial, and Medicaid.__
+        expr: PAYER_TYPE
+        data_type: TEXT
+        sample_values:
+          - MEDICARE PART D
+          - COMMERCIAL
+          - MEDICAID
+      - name: PAYER_TYPE_SP_DUP
+        synonyms:
+          - '  '
+        description: Type of payer for the sales data, including Medicare Part D,
+          Commercial, and Medicaid.__
+        expr: PAYER_TYPE_SP_DUP
+        data_type: TEXT
+        sample_values:
+          - MEDICARE PART D
+          - COMMERCIAL
+          - MEDICAID
+      - name: PRODUCT
+        synonyms:
+          - '  '
+        description: List of product names.__
+        expr: PRODUCT
+        data_type: TEXT
+        sample_values:
+          - Neuxola Oral Tablet 300 MG EC
+          - Kevthoza Oral Tablet 250 MG
+          - Raflopin Oral Tablet 250 MG
+      - name: REGION
+        synonyms:
+          - '  '
+        description: Geographic region of sales, such as country or region.__
+        expr: REGION
+        data_type: TEXT
+        sample_values:
+          - Neuxola National RM
+          - UNALIGNED
+          - Raflopin National RM
+      - name: REGN_CODE
+        synonyms:
+          - '  '
+        description: Registration Code__
+        expr: REGN_CODE
+        data_type: TEXT
+        sample_values:
+          - T10
+          - UNALIGNED
+          - C10
+      - name: SHIPMENT_TYPE
+        synonyms:
+          - '  '
+        description: Type of shipment, indicating whether it was paid, free, or shipped
+          to an institution.__
+        expr: SHIPMENT_TYPE
+        data_type: TEXT
+        sample_values:
+          - Paid
+          - Free
+          - Institution
+      - name: STATE
+        synonyms:
+          - '  '
+        description: State Code__
+        expr: STATE
+        data_type: TEXT
+        sample_values:
+          - PA
+          - TX
+          - MO
+      - name: TERR_NBR
+        synonyms:
+          - '  '
+        description: Territory Number__
+        expr: TERR_NBR
+        data_type: TEXT
+        sample_values:
+          - TE06
+          - TW07
+          - TW06
+      - name: TERRITORY
+        synonyms:
+          - '  '
+        description: Geographic Territory__
+        expr: TERRITORY
+        data_type: TEXT
+        sample_values:
+          - Philadelphia, PA
+          - Houston, TX
+          - St. Louis, MO
+      - name: TIME_PERIOD
+        synonyms:
+          - '  '
+        description: Time period for sales data.__
+        expr: TIME_PERIOD
+        data_type: TEXT
+        sample_values:
+          - Mar-22
+          - Feb-20
+          - Jul-20
+      - name: ACE_GROSS_NET_SALES_METRIC_NEW
+        synonyms:
+          - '  '
+        description: 'ACE Gross Net Sales Metric New: This column represents the total
+          gross and net sales for new products or services sold by ACE, with the metric
+          displayed in millions.__'
+        expr: ACE_GROSS_NET_SALES_METRIC_NEW
+        data_type: TEXT
+        sample_values:
+          - $0.00M
+          - $0.01M
+          - $0.02M
+      - name: ACE_GROSS_NET_SALES_METRIC_NEW_LABEL
+        synonyms:
+          - '  '
+        description: ACE Gross Net Sales Metric New Label__
+        expr: ACE_GROSS_NET_SALES_METRIC_NEW_LABEL
+        data_type: TEXT
+        sample_values:
+          - $0.00M
+          - $0.01M
+          - $0.02M
+    time_dimensions:
+      - name: INVOICE_DATE
+        synonyms:
+          - '  '
+        description: Date of invoice issuance.__
+        expr: INVOICE_DATE
+        data_type: DATE
+        sample_values:
+          - '2022-03-04'
+          - '2020-02-19'
+          - '2020-02-18'
+      - name: PATIENT_DOB
+        synonyms:
+          - Patient Age,Age groups
+        description: Date of Birth for Patients. Also this field can be used to measure
+          the age and age group like Infant,Toddler,Child,Teen,Adult,senior citizen.__
+        expr: PATIENT_DOB
+        data_type: DATE
+        sample_values:
+          - '1948-05-30'
+          - '1950-01-23'
+          - '1967-11-17'
+      - name: SHIP_DATE
+        synonyms:
+          - '  '
+        description: Date of shipment for sales data.__
+        expr: SHIP_DATE
+        data_type: DATE
+        sample_values:
+          - '2022-03-03'
+          - '2020-02-18'
+          - '2020-07-17'
+    measures:
+      - name: BRND_DIM_ID
+        synonyms:
+          - '  '
+        description: Brand Dimension Identifier__
+        expr: BRND_DIM_ID
+        data_type: NUMBER
+        sample_values:
+          - '1'
+          - '2'
+          - '3'
+      - name: CUST_TO_TERR_ALIGN_ID
+        synonyms:
+          - '  '
+        description: Customer Territory Alignment ID__
+        expr: CUST_TO_TERR_ALIGN_ID
+        data_type: NUMBER
+        sample_values:
+          - '860874'
+          - '901374'
+          - '923520'
+      - name: DAYS_OF_SUPPLY
+        synonyms:
+          - '  '
+        description: Number of days of supply for a product.__
+        expr: DAYS_OF_SUPPLY
+        data_type: NUMBER
+        sample_values:
+          - '30'
+          - '90'
+          - '5'
+      - name: ORDER_ID
+        synonyms:
+          - '  '
+        description: Unique identifier for each sales order.__
+        expr: ORDER_ID
+        data_type: NUMBER
+        sample_values:
+          - '705282'
+          - '615787'
+          - '615395'
+      - name: ORDER_ID_SORT
+        synonyms:
+          - '  '
+        description: Unique identifier for each order, used for sorting and ordering
+          purposes.__
+        expr: ORDER_ID_SORT
+        data_type: NUMBER
+        sample_values:
+          - '705282'
+          - '615787'
+          - '615395'
+      - name: RTRX_SALES_ID
+        synonyms:
+          - '  '
+        description: Unique identifier for each sales record.__
+        expr: RTRX_SALES_ID
+        data_type: NUMBER
+        sample_values:
+          - '105333'
+          - '105337'
+          - '105343'
+      - name: SHIP_ID
+        synonyms:
+          - '  '
+        description: Unique identifier for each shipment.__
+        expr: SHIP_ID
+        data_type: NUMBER
+        sample_values:
+          - '4126490'
+          - '309077776'
+          - '433655348'
+      - name: TOTAL_MGS
+        synonyms:
+          - '  '
+        description: Total Monthly Gross Sales__
+        expr: TOTAL_MGS
+        data_type: NUMBER
+        sample_values:
+          - '27000'
+          - '18000'
+          - '36000'
+      - name: GROSS_SALES
+        synonyms:
+          - '  '
+        description: Gross sales represents the total revenue generated from the sale
+          of products or services, before any deductions or discounts are applied.__
+        expr: GROSS_SALES
+        data_type: NUMBER
+        sample_values:
+          - '6072'
+          - '2746'
+          - '9938'
+      - name: GROSS_NET_SALES_METRIC
+        synonyms:
+          - '  '
+        description: 'Gross Net Sales Metric: The total sales revenue generated by
+          the company, excluding any deductions for returns, discounts, or other adjustments.__'
+        expr: GROSS_NET_SALES_METRIC
+        data_type: FLOAT
+        sample_values:
+          - '5632.26'
+          - '4280.02'
+          - '8142.27'
+      - name: INVOICE_AMT
+        synonyms:
+          - '  '
+        description: 'Invoice Amount: The total amount of the invoice, representing
+          the monetary value of the sale.__'
+        expr: INVOICE_AMT
+        data_type: FLOAT
+        sample_values:
+          - '7792.41'
+          - '5240.14'
+          - '9968.8'
+      - name: MG_PER_DAY
+        synonyms:
+          - '  '
+        description: Average Monthly Sales Per Day__
+        expr: MG_PER_DAY
+        data_type: NUMBER
+        sample_values:
+          - '900'
+          - '600'
+          - '1200'
+      - name: NET_SALES
+        synonyms:
+          - '  '
+        description: Net Sales represents the total revenue generated from sales transactions,
+          excluding any deductions or discounts.__
+        expr: NET_SALES
+        data_type: NUMBER
+        sample_values:
+          - '3172'
+          - '1832'
+          - '6629'
+      - name: NET_INVOICE_AMOUNT
+        synonyms:
+          - '  '
+        description: 'Net Invoice Amount: The total amount invoiced to customers for
+          goods or services sold.__'
+        expr: NET_INVOICE_AMOUNT
+        data_type: FLOAT
+        sample_values:
+          - '5632.26'
+          - '4280.02'
+          - '8142.27'
+      - name: PATIENT_DOB_YEAR
+        synonyms:
+          - '  '
+        description: Patient Date of Birth Year__
+        expr: PATIENT_DOB_YEAR
+        data_type: NUMBER
+        sample_values:
+          - '1948'
+          - '1950'
+          - '1967'
